@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambatron AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: radial-gradient(circle, #1a1a2e 0%, #16213e 100%); }
+        .chat-container { height: 70vh; scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #4e4e4e; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 flex flex-col overflow-hidden">
+        <div class="p-6 border-b border-white/10 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight text-blue-400">NEURAL<span class="text-white">MIND</span></h1>
+            <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full uppercase">Unfiltered Mode</span>
+        </div>
+
+        <div id="chatBox" class="chat-container p-6 overflow-y-auto space-y-4">
+            <div class="bg-blue-600/20 self-start p-3 rounded-lg max-w-[80%] border border-blue-500/30">
+                Halo! Aku AI siap jawab apa saja. Mau tanya apa hari ini?
+            </div>
+        </div>
+
+        <div class="p-4 bg-black/20 border-t border-white/10">
+            <div class="flex gap-2">
+                <input type="text" id="userInput" placeholder="Ketik apa saja di sini..." 
+                    class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 transition-all">
+                <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-xl font-semibold transition-all">
+                    Kirim
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
