@@ -5,34 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ambatron AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background: radial-gradient(circle, #1a1a2e 0%, #16213e 100%); }
-        .chat-container { height: 70vh; scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #4e4e4e; border-radius: 10px; }
+        body { 
+            background: #0f172a;
+            background-image: radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.5) 0, transparent 50%), 
+                              radial-gradient(at 100% 100%, rgba(17, 24, 39, 1) 0, transparent 50%);
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #chatBox::-webkit-scrollbar { width: 4px; }
+        #chatBox::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
     </style>
 </head>
-<body class="text-gray-100 flex items-center justify-center min-h-screen p-4">
+<body class="text-slate-300 flex items-center justify-center min-h-screen p-4">
 
-    <div class="w-full max-w-2xl bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 flex flex-col overflow-hidden">
-        <div class="p-6 border-b border-white/10 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-tight text-blue-400">NEURAL<span class="text-white">MIND</span></h1>
-            <span class="text-xs bg-green-500/20 text-green-400 px-2 py-1 rounded-full uppercase">Unfiltered Mode</span>
-        </div>
-
-        <div id="chatBox" class="chat-container p-6 overflow-y-auto space-y-4">
-            <div class="bg-blue-600/20 self-start p-3 rounded-lg max-w-[80%] border border-blue-500/30">
-                Halo! Aku AI siap jawab apa saja. Mau tanya apa hari ini?
+    <div class="w-full max-w-2xl h-[85vh] glass-card rounded-[2rem] shadow-2xl flex flex-col overflow-hidden">
+        <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tighter text-white">NEURAL<span class="text-blue-500">MIND</span></h1>
+                <p id="userDisplay" class="text-[10px] text-blue-400 font-bold uppercase tracking-widest mt-1">Guest Mode</p>
+            </div>
+            <div id="limitBadge" class="text-[10px] font-mono bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+                CHATS: 0/50
             </div>
         </div>
 
-        <div class="p-4 bg-black/20 border-t border-white/10">
-            <div class="flex gap-2">
-                <input type="text" id="userInput" placeholder="Ketik apa saja di sini..." 
-                    class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 transition-all">
-                <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-xl font-semibold transition-all">
-                    Kirim
+        <div id="chatBox" class="flex-1 p-6 overflow-y-auto space-y-6 flex flex-col">
+            </div>
+
+        <div class="p-6 bg-black/20">
+            <div class="flex gap-3 relative">
+                <input type="text" id="userInput" placeholder="Tanyakan apa saja..." 
+                    class="flex-1 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all text-sm outline-none">
+                <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-500 text-white px-5 rounded-2xl transition-all active:scale-95 shadow-lg shadow-blue-900/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
                 </button>
+            </div>
+            <div class="flex justify-between mt-4 px-2">
+                <span class="text-[9px] text-slate-500 uppercase tracking-widest">Model: GPT-3.5 Unfiltered</span>
+                <span id="statusIndicator" class="text-[9px] text-green-500 uppercase tracking-widest">System Ready</span>
             </div>
         </div>
     </div>
